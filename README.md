@@ -51,11 +51,11 @@ _Fix all other bugs and visual imperfections you find._
 -   [x] **F2**: Load todo items
     -   After opening the application, todo items should be loaded from the server
     -   The todo items should be displayed in the `List` component.
--   [ ] **F3**: Add a todo item
+-   [x] **F3**: Add a todo item
     -   Implement logic, which toggles visibility between the "add" button in the `Header` and a `Form` component.
     -   Entering a value inside the `Form` component and submitting it should create a new todo item.
     -   Data should be persisted on the server via an API call.
--   [ ] **F4**: Edit a todo item's label
+-   [x] **F4**: Edit a todo item's label
     -   Implement logic, which toggles visibility between the "edit" button in the `ListItem` and a `Form` component.
     -   Entering a value inside the `Form` component and submitting it should edit the existing todo item.
     -   Changes to the data should be persisted on the server via an API call.
