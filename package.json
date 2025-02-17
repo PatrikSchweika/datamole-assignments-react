@@ -4,5 +4,9 @@
     "private": true,
     "version": "1.0.0",
     "packageManager": "pnpm@10.4.0",
-    "scripts": {}
+    "scripts": {
+        "build": "pnpm run build:client",
+        "dev": "pnpm -r dev",
+        "lint": "pnpm run lint:client"
+    }
 }
