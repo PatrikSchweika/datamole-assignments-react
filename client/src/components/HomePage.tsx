@@ -1,15 +1,17 @@
 import { Header } from "./Header";
 import { List } from "./List";
 import { Footer } from "./Footer";
-import { useTodos } from "./queries/todo-queries";
+import { useCreateTodo, useTodos } from "./queries/todo-queries";
 import { ListItem } from "./ListItem";
 
 export const HomePage = () => {
     const { data: todos } = useTodos();
 
+    const { mutateAsync: createTodo } = useCreateTodo();
+
     return (
         <>
-            <Header onItemAdd={() => console.warn("unimplemented")}>To Do app</Header>
+            <Header onItemAdd={createTodo}>To Do app</Header>
             <List>
                 {todos?.map((todo) => (
                     <ListItem
