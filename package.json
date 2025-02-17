@@ -3,6 +3,6 @@
     "description": "Datamole's React interview assignment",
     "private": true,
     "version": "1.0.0",
-    "packageManager": "pnpm@8.15.6",
+    "packageManager": "pnpm@10.4.0",
     "scripts": {}
 }
