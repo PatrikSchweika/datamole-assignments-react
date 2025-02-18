@@ -15,8 +15,6 @@ const StyledDiv = styled.header`
     button {
         all: unset;
 
-        margin-left: auto;
-
         text-align: center;
 
         width: 25px;
@@ -29,6 +27,13 @@ const StyledDiv = styled.header`
 
         color: #fff;
     }
+`;
+
+const ActionContainer = styled.div`
+    display: flex;
+    gap: 8px;
+    flex-grow: 1;
+    justify-content: flex-end;
 `;
 
 type HeaderProps = {
@@ -54,13 +59,15 @@ export const Header = (props: HeaderProps) => {
     return (
         <StyledDiv>
             <h1>{children}</h1>
-            {showForm ? (
-                <Form initialValue={""} onSubmit={handleSubmit} onCancel={handleShowFormToggle} />
-            ) : (
-                <button onClick={handleShowFormToggle}>
-                    <PlusIcon />
-                </button>
-            )}
+            <ActionContainer>
+                {showForm ? (
+                    <Form initialValue={""} onSubmit={handleSubmit} onCancel={handleShowFormToggle} />
+                ) : (
+                    <button onClick={handleShowFormToggle}>
+                        <PlusIcon />
+                    </button>
+                )}
+            </ActionContainer>
         </StyledDiv>
     );
 };
