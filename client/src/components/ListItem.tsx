@@ -5,10 +5,22 @@ import styled from "styled-components";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form";
 
+const ButtonContainer = styled.div`
+    visibility: hidden;
+    display: flex;
+    gap: 8px;
+    flex-grow: 1;
+    justify-content: flex-end;
+`;
+
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+
+    &:hover ${ButtonContainer} {
+        visibility: visible;
+    }
 `;
 
 const Label = styled.label`
@@ -22,13 +34,6 @@ export type ListItemProps = {
     onItemDoneToggle: (isDone: boolean) => void;
     onItemDelete: () => void;
 };
-
-const ButtonContainer = styled.div`
-    display: flex;
-    gap: 8px;
-    flex-grow: 1;
-    justify-content: flex-end;
-`;
 
 export const ListItem = ({ label, isDone, onItemDoneToggle, onItemDelete, onItemLabelEdit }: ListItemProps) => {
     const [showForm, setShowForm] = useState(false);
