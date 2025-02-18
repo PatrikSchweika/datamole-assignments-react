@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form";
+import { Button } from "./Button";
 
 const ButtonContainer = styled.div`
     visibility: hidden;
@@ -53,16 +54,16 @@ export const ListItem = ({ label, isDone, onItemDoneToggle, onItemDelete, onItem
             <Label>{label}</Label>
 
             <ButtonContainer>
-                <button onClick={() => onItemDelete()}>
+                <Button onClick={() => onItemDelete()}>
                     <TrashIcon />
-                </button>
+                </Button>
 
                 {showForm ? (
                     <Form initialValue={label} onCancel={handleShowFormToggle} onSubmit={handleSubmit} />
                 ) : (
-                    <button onClick={handleShowFormToggle}>
+                    <Button onClick={handleShowFormToggle}>
                         <Pencil1Icon />
-                    </button>
+                    </Button>
                 )}
             </ButtonContainer>
         </StyledDiv>

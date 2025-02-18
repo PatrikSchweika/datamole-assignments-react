@@ -2,6 +2,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Form } from "./form";
+import { Button } from "./Button";
 
 const StyledDiv = styled.header`
     display: flex;
@@ -11,22 +12,6 @@ const StyledDiv = styled.header`
 
     border-bottom: 1px solid;
     border-color: ${(props) => props.theme.colors.olive6};
-
-    button {
-        all: unset;
-
-        text-align: center;
-
-        width: 25px;
-        height: 25px;
-
-        background-color: ${(props) => props.theme.colors.grass9};
-        border: 1px solid;
-        border-color: ${(props) => props.theme.colors.olive9};
-        border-radius: 50%;
-
-        color: #fff;
-    }
 `;
 
 const ActionContainer = styled.div`
@@ -63,9 +48,9 @@ export const Header = (props: HeaderProps) => {
                 {showForm ? (
                     <Form initialValue={""} onSubmit={handleSubmit} onCancel={handleShowFormToggle} />
                 ) : (
-                    <button onClick={handleShowFormToggle}>
+                    <Button onClick={handleShowFormToggle}>
                         <PlusIcon />
-                    </button>
+                    </Button>
                 )}
             </ActionContainer>
         </StyledDiv>
