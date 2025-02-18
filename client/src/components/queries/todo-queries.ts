@@ -28,7 +28,11 @@ const deleteTodo = async (id: number) => {
 };
 
 const updateTodo = async ({ id, ...body }: UpdateTodoData) => {
-    return API_CLIENT.patch<Todo>(`/items/${id}`, { ...body }).then((res) => res.data);
+    return API_CLIENT.patch(`/items/${id}`, { ...body });
+};
+
+const completeTodo = async (id: number) => {
+    return API_CLIENT.post(`/items/${id}/done`);
 };
 
 export const useTodos = () => {
@@ -43,6 +47,15 @@ export const useDeleteTodo = () => {
 
     return useMutation({
         mutationFn: deleteTodo,
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [TODOS_QUERY_KEY] }),
+    });
+};
+
+export const useCompleteTodo = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: completeTodo,
         onSuccess: () => queryClient.invalidateQueries({ queryKey: [TODOS_QUERY_KEY] }),
     });
 };
