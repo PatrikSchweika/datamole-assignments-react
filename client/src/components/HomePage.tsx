@@ -21,12 +21,16 @@ const todoComparator = (a: Todo, b: Todo) => {
 export const HomePage = () => {
     const { data: todos } = useTodos();
 
-    const sortedTodos = useMemo(() => {
+    const { sortedTodos, todoItems, doneItems } = useMemo(() => {
         if (!todos) {
-            return [];
+            return { sortedTodos: [], doneItems: 0, todoItems: 0 };
         }
 
-        return todos.toSorted(todoComparator);
+        const sortedTodos = todos.toSorted(todoComparator);
+        const doneItems = todos.filter((todo) => todo.isDone).length;
+        const todoItems = todos.length - doneItems;
+
+        return { sortedTodos, doneItems, todoItems };
     }, [todos]);
 
     const { mutate: createTodo } = useCreateTodo();
@@ -48,7 +52,7 @@ export const HomePage = () => {
                     />
                 ))}
             </List>
-            <Footer />
+            <Footer doneItems={doneItems} todoItems={todoItems} />
         </>
     );
 };
