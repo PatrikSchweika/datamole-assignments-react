@@ -19,7 +19,7 @@ const StyledButton = styled.button`
     border: 1px solid ${(props) => props.theme.colors.olive9};
     border-radius: 50%;
     color: #fff;
-    
+
     &:hover {
         background-color: ${(props) => props.theme.colors.grass11};
     }
