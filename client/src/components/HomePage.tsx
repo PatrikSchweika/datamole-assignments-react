@@ -49,7 +49,7 @@ export const HomePage = () => {
                         key={todo.id}
                         onItemDelete={() => deleteTodo(todo.id)}
                         onItemLabelEdit={(label) => updateTodo({ id: todo.id, label })}
-                        onItemDoneToggle={(isDone) => completeTodo(todo.id)}
+                        onItemDoneToggle={(isDone) => isDone && completeTodo(todo.id)}
                     />
                 ))}
             </List>

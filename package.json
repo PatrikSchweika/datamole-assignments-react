@@ -5,8 +5,9 @@
     "version": "1.0.0",
     "packageManager": "pnpm@10.4.0",
     "scripts": {
-        "build": "pnpm run build:client",
+        "build": "pnpm -r build",
         "dev": "pnpm -r dev",
-        "lint": "pnpm run lint:client"
+        "lint": "pnpm -r lint",
+        "format": "pnpm -r format"
     }
 }
