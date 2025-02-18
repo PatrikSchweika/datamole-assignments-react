@@ -1,14 +1,14 @@
 import { Header } from "./Header";
 import { List } from "./List";
 import { Footer } from "./Footer";
-import { useCreateTodo, useTodos, useUpdateTodoLabel } from "./queries/todo-queries";
+import { useCreateTodo, useTodos, useUpdateTodo } from "./queries/todo-queries";
 import { ListItem } from "./ListItem";
 
 export const HomePage = () => {
     const { data: todos } = useTodos();
 
-    const { mutateAsync: createTodo } = useCreateTodo();
-    const { mutateAsync: updateTodoLabel } = useUpdateTodoLabel();
+    const { mutate: createTodo } = useCreateTodo();
+    const { mutate: updateTodo } = useUpdateTodo();
 
     return (
         <>
@@ -20,8 +20,8 @@ export const HomePage = () => {
                         isDone={todo.isDone}
                         key={todo.id}
                         onItemDelete={() => {}}
-                        onItemLabelEdit={(label) => updateTodoLabel({ id: todo.id, label })}
-                        onItemDoneToggle={() => {}}
+                        onItemLabelEdit={(label) => updateTodo({ id: todo.id, label })}
+                        onItemDoneToggle={(isDone) => updateTodo({ id: todo.id, isDone })}
                     />
                 ))}
             </List>

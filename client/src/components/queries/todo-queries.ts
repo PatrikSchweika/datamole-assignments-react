@@ -17,13 +17,14 @@ const createTodo = async (label: string) => {
     return API_CLIENT.post<Todo>("/items", body).then((res) => res.data);
 };
 
-interface UpdateTodoLabelData {
+interface UpdateTodoData {
     id: number;
-    label: string;
+    label?: string;
+    isDone?: boolean;
 }
 
-const updateTodoLabel = async ({ id, label }: UpdateTodoLabelData) => {
-    return API_CLIENT.patch<Todo>(`/items/${id}`, { label }).then((res) => res.data);
+const updateTodo = async ({ id, ...body }: UpdateTodoData) => {
+    return API_CLIENT.patch<Todo>(`/items/${id}`, { ...body }).then((res) => res.data);
 };
 
 export const useTodos = () => {
@@ -33,11 +34,11 @@ export const useTodos = () => {
     });
 };
 
-export const useUpdateTodoLabel = () => {
+export const useUpdateTodo = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: updateTodoLabel,
+        mutationFn: updateTodo,
         onSuccess: () => queryClient.invalidateQueries({ queryKey: [TODOS_QUERY_KEY] }),
     });
 };
