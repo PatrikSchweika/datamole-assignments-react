@@ -13,8 +13,15 @@ server.use((req, res, next) => {
     next();
 });
 
-server.post("/items/:id/done", (req, res) => {
+server.post("/items/:id/mark", (req, res) => {
     const id = req.params.id;
+
+    const isDone = req.body?.isDone
+
+    if (isDone === undefined) {
+        res.status(400).json({ error: "Missing isDone parameter" });
+    }
+
     const db = router.db; // lowdb instance
     const todo = db.get("items").find({ id: Number(id) }).value();
 
@@ -22,10 +29,21 @@ server.post("/items/:id/done", (req, res) => {
         res.status(404).json({ error: "Todo item not found" });
     }
 
-    if (!todo.isDone) {
+    if (todo.isDone && isDone) {
+        res.status(204).send()
+        return
+    }
+
+    if (isDone) {
         db.get("items")
             .find({ id: Number(id) })
             .assign({ isDone: true, finishedAt: Date.now() })
+            .write();
+    }
+    else {
+        db.get("items")
+            .find({ id: Number(id) })
+            .assign({ isDone: false, finishedAt: undefined })
             .write();
     }
 

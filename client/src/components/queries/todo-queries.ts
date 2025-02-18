@@ -31,8 +31,13 @@ const updateTodo = async ({ id, ...body }: UpdateTodoData) => {
     return API_CLIENT.patch(`/items/${id}`, { ...body });
 };
 
-const completeTodo = async (id: number) => {
-    return API_CLIENT.post(`/items/${id}/done`);
+interface MarkTodoData {
+    id: number;
+    isDone: boolean;
+}
+
+const markTodo = async ({ id, isDone }: MarkTodoData) => {
+    return API_CLIENT.post(`/items/${id}/mark`, { isDone });
 };
 
 export const useTodos = () => {
@@ -51,11 +56,11 @@ export const useDeleteTodo = () => {
     });
 };
 
-export const useCompleteTodo = () => {
+export const useMarkTodo = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: completeTodo,
+        mutationFn: markTodo,
         onSuccess: () => queryClient.invalidateQueries({ queryKey: [TODOS_QUERY_KEY] }),
     });
 };

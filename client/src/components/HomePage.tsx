@@ -1,7 +1,7 @@
 import { Header } from "./Header";
 import { List } from "./List";
 import { Footer } from "./Footer";
-import { useCompleteTodo, useCreateTodo, useDeleteTodo, useTodos, useUpdateTodo } from "./queries/todo-queries";
+import { useMarkTodo, useCreateTodo, useDeleteTodo, useTodos, useUpdateTodo } from "./queries/todo-queries";
 import { ListItem } from "./ListItem";
 import { useMemo } from "react";
 import { Todo } from "../models/todo";
@@ -36,7 +36,7 @@ export const HomePage = () => {
     const { mutate: createTodo } = useCreateTodo();
     const { mutate: updateTodo } = useUpdateTodo();
     const { mutate: deleteTodo } = useDeleteTodo();
-    const { mutate: completeTodo } = useCompleteTodo();
+    const { mutate: markTodo } = useMarkTodo();
 
     return (
         <>
@@ -49,7 +49,7 @@ export const HomePage = () => {
                         key={todo.id}
                         onItemDelete={() => deleteTodo(todo.id)}
                         onItemLabelEdit={(label) => updateTodo({ id: todo.id, label })}
-                        onItemDoneToggle={(isDone) => isDone && completeTodo(todo.id)}
+                        onItemDoneToggle={(isDone) => markTodo({ id: todo.id, isDone })}
                     />
                 ))}
             </List>
