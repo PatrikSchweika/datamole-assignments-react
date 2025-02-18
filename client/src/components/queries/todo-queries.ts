@@ -23,6 +23,10 @@ interface UpdateTodoData {
     isDone?: boolean;
 }
 
+const deleteTodo = async (id: number) => {
+    return API_CLIENT.delete(`/items/${id}`);
+};
+
 const updateTodo = async ({ id, ...body }: UpdateTodoData) => {
     return API_CLIENT.patch<Todo>(`/items/${id}`, { ...body }).then((res) => res.data);
 };
@@ -31,6 +35,15 @@ export const useTodos = () => {
     return useQuery({
         queryKey: [TODOS_QUERY_KEY],
         queryFn: fetchTodos,
+    });
+};
+
+export const useDeleteTodo = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: deleteTodo,
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [TODOS_QUERY_KEY] }),
     });
 };
 

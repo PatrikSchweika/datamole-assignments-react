@@ -28,6 +28,14 @@ export const ListItem = (props: LiteeItemProp) => {
     const [showForm, setShowForm] = useState(false);
     const handleShowFormToggle = useCallback(() => setShowForm((prev) => !prev), [setShowForm]);
 
+    const handleSubmit = useCallback(
+        (label: string) => {
+            onItemLabelEdit(label);
+            handleShowFormToggle();
+        },
+        [onItemLabelEdit, handleShowFormToggle]
+    );
+
     return (
         <StyledDiv>
             <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
@@ -37,7 +45,7 @@ export const ListItem = (props: LiteeItemProp) => {
             </button>
 
             {showForm ? (
-                <Form initialValue={label} onCancel={handleShowFormToggle} onSubmit={onItemLabelEdit} />
+                <Form initialValue={label} onCancel={handleShowFormToggle} onSubmit={handleSubmit} />
             ) : (
                 <button onClick={handleShowFormToggle}>
                     <Pencil1Icon />

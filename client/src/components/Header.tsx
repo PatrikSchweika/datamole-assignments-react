@@ -33,11 +33,19 @@ export const Header = (props: HeaderProps) => {
 
     const handleShowFormToggle = useCallback(() => setShowForm((prev) => !prev), [setShowForm]);
 
+    const handleSubmit = useCallback(
+        (label: string) => {
+            onItemAdd(label);
+            handleShowFormToggle();
+        },
+        [onItemAdd, handleShowFormToggle]
+    );
+
     return (
         <StyledDiv>
             <h1>{children}</h1>
             {showForm ? (
-                <Form initialValue={""} onSubmit={onItemAdd} onCancel={handleShowFormToggle} />
+                <Form initialValue={""} onSubmit={handleSubmit} onCancel={handleShowFormToggle} />
             ) : (
                 <button onClick={handleShowFormToggle}>
                     <PlusIcon />
