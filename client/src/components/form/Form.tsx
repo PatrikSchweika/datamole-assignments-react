@@ -6,6 +6,7 @@ import { Input } from "./Input";
 
 const FormStyled = styled.form`
     display: flex;
+    gap: 5px;
 `;
 
 type FormProps = {

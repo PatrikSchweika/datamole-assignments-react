@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const FooterStyled = styled.footer`
     display: flex;
+    gap: 8px;
 
     margin-top: auto;
     padding-top: 15px;
@@ -19,8 +20,8 @@ type FooterProps = {
 export const Footer = ({ todoItems = 0, doneItems = 0 }: FooterProps) => {
     return (
         <FooterStyled>
-            Todo: {todoItems}
-            Done: {doneItems}
+            <div>Todo: {todoItems}</div>
+            <div>Done: {doneItems}</div>
         </FooterStyled>
     );
 };

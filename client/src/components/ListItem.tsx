@@ -8,13 +8,14 @@ import { Form } from "./form";
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    gap: 8px;
 `;
 
 const Label = styled.label`
-    margin-left: 15px;
+    margin-left: 5px;
 `;
 
-export type LiteeItemProp = {
+export type ListItemProps = {
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
@@ -22,9 +23,7 @@ export type LiteeItemProp = {
     onItemDelete: () => void;
 };
 
-export const ListItem = (props: LiteeItemProp) => {
-    const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
-
+export const ListItem = ({ label, isDone, onItemDoneToggle, onItemDelete, onItemLabelEdit }: ListItemProps) => {
     const [showForm, setShowForm] = useState(false);
     const handleShowFormToggle = useCallback(() => setShowForm((prev) => !prev), [setShowForm]);
 

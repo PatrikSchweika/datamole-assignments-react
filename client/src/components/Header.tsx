@@ -5,11 +5,19 @@ import { Form } from "./form";
 
 const StyledDiv = styled.header`
     display: flex;
+    gap: 8px;
+    padding: 16px 8px;
+    align-items: center;
+
+    border-bottom: 1px solid;
+    border-color: ${(props) => props.theme.colors.olive6};
 
     button {
         all: unset;
 
         margin-left: auto;
+
+        text-align: center;
 
         width: 25px;
         height: 25px;
